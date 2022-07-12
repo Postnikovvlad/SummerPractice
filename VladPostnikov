@@ -1,0 +1,97 @@
+//Подключаем библиотеки
+#include <stdio.h>
+#include <math.h>
+
+
+int main()
+{
+    float x1, y1, z1, d1;
+    float x2, y2, z2, d2;
+    float num_z, num_y1, num_z1, num_d1, z_y, z_c, z, y_y, y_y1, zero, quest1, quest2, quest3;
+    float z_z, z_yy, y_y2, quest11, quest22, quest33;
+    float num_1, num_2, num_3, num_4, num_5, quest111, quest222, quest333;
+    
+    printf("x1; y1; z1; d1: ");
+    scanf("%f%f%f%f", &x1, &y1, &z1, &d1);
+    printf("x2; y2; z2; d2: ");
+    scanf("%f%f%f%f", &x2, &y2, &z2, &d2);
+    
+    //Проверка на существование прямой
+    if(x1/x2 == y1/y2 == z1/z2 == d1/d2){
+        printf("Плоскости параллельные");}
+    else{
+        printf("A1 = %.fx + %.fy + %.fz + %.f\n", x1, y1, z1, d1);
+        printf("A2 = %.fx + %.fy + %.fz + %.f\n", x2, y2, z2, d2);
+        //Допустип х=0
+        //Сложим значения двух плоскостей для нахождения второй точки
+        num_y1 = y1 + y2;
+        num_z1 = z1 + z2;
+        num_d1 = d1 + d2;
+        zero = 0;
+        printf("sum = %.fy + %.fz + %.f\n", num_y1, num_z1, num_d1);
+        //Найдем у
+        if(y1+y2 == 0)
+        {
+            printf("%.fz + %.f = 0\n", num_z1, num_d1);
+            num_d1 = num_d1*(-1);
+            printf("z = %.f / %.f\n", num_d1, num_z1);
+            z_y = num_d1 / num_z1;
+            printf("z = %.2f\n", z_y);
+            //Подставим z в уравнение
+            printf("%.2fy + %.2f * %.2f + %.2f\n", y1, z1, z_y, d1);
+            y_y = (z1 * z_y) + d1;
+            y_y1 = y_y / y1;
+            printf("y = %.2f\n", y_y1);
+            // Возьмем любую точку 
+            printf("A1(2;-1;0)\n");
+            // мы нашли вторую точку
+            printf("A2(%.2f;%.2f;%.2f)\n", zero, y_y1, z_y);
+            quest1 = (zero - 2)*(-1);
+            quest2 = (y_y1 + 1)*(-1);
+            quest3 = (z_y * (-1));
+            printf("(x-2)/%.2f = (y+1)/%.2f = (z)/%.2f", quest1, quest2, quest3);
+        }
+        else if(z1+z2 == 0)
+        {
+            printf("%.2fy + %.2f = 0\n", num_y1, num_d1);
+            num_d1 = num_d1*(-1);
+            printf("y = %.2f / %.2f\n", num_d1, num_y1);
+            z_z = num_d1 / num_y1;
+            printf("y = %.2f\n", z_z);
+            //Подставим y в уравнение
+            printf("%.2f * %.2f + %.2fz + %.2f\n", y1, z_z, z1, d1);
+            z_yy = (y1 * z_z) + d1;
+            y_y2 = z_yy / z1;
+            printf("z = %.2f\n", y_y2);
+            // Возьмем любую точку 
+            printf("A1(2;-1;0)\n");
+            // мы нашли вторую точку
+            printf("A2(%.2f;%.2f;%.2f)\n", zero, z_z, y_y2);
+            quest11 = (zero - 2)*(-1);
+            quest22 = (z_z + 1)*(-1);
+            quest33 = (y_y2 * (-1));
+            printf("(x-2)/%.2f = (y+1)/%.2f = (z)/%.2f", quest11, quest22, quest33);
+        }
+        else
+        {
+            printf("y = (%.2fz + %.2f)/%.2f\n", num_z1, num_d1, num_y1);
+            num_1 = (num_z1 + num_d1)/num_y1;
+            printf("(%.2f * %.2f) + %.2fz + %.2f\n", y1, num_1, z1, d1);
+            num_2 = (num_z1 / num_y1) * y1 + z1;
+            num_3 = (num_d1 / num_y1) * y1 + d1;
+            num_4 = ((num_3 * (-1)/ num_2));
+            printf(" z = %.2f\n", num_4);
+            num_5 = ((num_4 * num_z1) + num_d1)/num_y1;
+            printf(" y = %.2f\n", num_5);
+            // Возьмем любую точку 
+            printf("A1(2;-1;0)\n");
+            // мы нашли вторую точку
+            printf("A2(%.2f;%.2f;%.2f)\n", zero, num_5, num_4);
+            quest111 = (zero - 2)*(-1);
+            quest222 = (num_5 + 1)*(-1);
+            quest333 = (num_4 * (-1));
+            printf("(x-2)/%.2f = (y+1)/%.2f = (z)/%.2f", quest111, quest222, quest333);
+        }
+    }
+    return 0;
+}
